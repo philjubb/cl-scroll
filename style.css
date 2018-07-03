@@ -1,63 +1,29 @@
-body{
-  background-color: #26292f;
+html, body {
+  height: 100vh !important;
+  margin: 0;
+  padding: 0;    
 }
 
-#dialcasing {
-  width: 600px;
-  height: 600px;
-  background-color: blue;
+body {
+  transition: background-color 1s ease;
 }
+div#wrapper {
+  position: absolute;
+  right: 0;
+  top:82%;
+}
+div#wrapper div {
+  position: relative;
+  right: -48%;
+}
+
 #knob {
-  position:absolute;
+  position: relative;
+  right: -50%;
+  bottom: -50%;
   background-image: url('selector.png');
-  width:478px; 
-  height:478px;
-  bottom:-50px;
-  right:-70px;
-}
-#description {
-  font-size:20px;
-}
-
-.box {
-  font-size:30px;
-  padding: 10px;
-}
-#content .box {
-  
-  height: 335px;
-}
-#content{
-  position:absolute;
-  left:400px;
-  height:355px;
-  width:500px;
-  overflow-y: scroll;
-}
-.box1{
-  background-color: #88b6f7;
-}
-.box2{
-  background-color: #9a9bff;
-}
-.box3{
-  background-color: #bbfb94;
-}
-.box4{
-  background-color: #ed74c4;
-}
-.box5{
-  background-color: #eb984e;
-}
-.box6{
-  background-color: #a9eaf1;
-}
-.box7{
-  background-color: #dcecf1;
-}
-.box8{
-  background-color: pink;
-}
-.box9{
-  background-color: purple;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width:600px; 
+  height:600px;
 }

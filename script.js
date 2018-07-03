@@ -1,92 +1,79 @@
 /* fun little example using GreenSock's Draggable: https://www.greensock.com/draggable/ */
 
-var content = document.getElementById("dialcasing");
+var content = document.getElementById("body");
 var knob = document.getElementById("knob");
-var maxScroll = content.scrollHeight - content.offsetHeight;
-var sections = 9;
 
-var increment=51.428571428571429;
+var increment = 51.428571428571429;
 
-function getColour(rotation){
-rotation=rotation % 360;  
-if(rotation<0) rotation=rotation+360;
-//if(rotation>360) rotation=rotation-360;
-  switch (true) {
-    case (rotation < increment):
-    console.log(rotation + " less than increment");
-        break;
-    case (rotation < increment*2):
-    console.log(rotation + " l<2 i");
-        break;
-    case (rotation < increment*3):
-    content.style.backgroundColor="blue";
-    console.log(rotation + " l<3 i");
-        break;
-    case (rotation < increment*4):
-    content.style.backgroundColor="yellow";
-    console.log(rotation + " l<4 i");
-        break;
-    case (rotation < increment*5):
-    content.style.backgroundColor="green";
-    console.log(rotation + " l<5 i");
-        break;
-    case (rotation < increment*6):
-    console.log(rotation + " l<6 i");
-        break;
-    case (rotation < increment*7):
-    console.log(rotation + " l<7 i");
-        break;
-    default:
-        break;
+function hexToRgb(hex) {
+    var c;
+    if (/^#([A-Fa-f0-9]{3}){1,2}$/.test(hex)) {
+        c = hex.substring(1).split('');
+        if (c.length == 3) {
+            c = [c[0], c[0], c[1], c[1], c[2], c[2]];
+        }
+        c = '0x' + c.join('');
+        return 'rgb(' + [(c >> 16) & 255, (c >> 8) & 255, c & 255].join(',') + ')';
+    }
+    throw new Error('Bad Hex');
 }
+
+function getStyle(el, styleProp) {
+    if (el.currentStyle)
+        var y = el.currentStyle[styleProp];
+    else if (window.getComputedStyle)
+        var y = document.defaultView.getComputedStyle(el, null).getPropertyValue(styleProp);
+    return y;
+}
+
+var clcolours = ["#EB9599", "#BBB3D1", "#9D8FCB", "#51BE92", "#4EAEDE", "#7CCBEC", "#EDC993"]
+
+function getColour(rotation) {
+    rotation = rotation % 360;
+    if (rotation < 0) rotation = rotation + 360;
+    switch (true) {
+        case (rotation < increment):
+//            console.log(getStyle(content, 'background-color'), "and " + hexToRgb(clcolours[0]));
+            content.style.backgroundColor = clcolours[0];
+            break;
+        case (rotation < increment * 2):
+            content.style.backgroundColor = clcolours[1];
+            //        console.log(rotation + " l<2 i");
+            break;
+        case (rotation < increment * 3):
+            content.style.backgroundColor = clcolours[2];
+            //    console.log(rotation + " l<3 i");
+            break;
+        case (rotation < increment * 4):
+            content.style.backgroundColor = clcolours[3];
+            //    console.log(rotation + " l<4 i");
+            break;
+        case (rotation < increment * 5):
+            content.style.backgroundColor = clcolours[4];
+            //    console.log(rotation + " l<5 i");
+            break;
+        case (rotation < increment * 6):
+            content.style.backgroundColor = clcolours[5];
+            //    console.log(rotation + " l<6 i");
+            break;
+        case (rotation < increment * 7):
+            content.style.backgroundColor = clcolours[6];
+            //    console.log(rotation + " l<7 i");
+            break;
+        default:
+            break;
+    }
 }
 
 
 var dragKnob = Draggable.create(knob, {
-  type:"rotation",
-  throwProps:true,
-  onClick:function() {
-		alert("clicked");
-	},
-  onDrag: function() {
- //   var scrollPos = map(this.x, 0, 360, 0, maxScroll)
- //   console.log(maxScroll + " and " + scrollPos);
- //   content.scrollTop = scrollPos;
-    getColour(this.x);
+    type: "rotation",
+    throwProps: false,
+    onClick: function () {
+        alert("clicked");
+    },
+    onDrag: function () {
+        getColour(this.x);
 
-  }
+    }
 })[0];
-
-//content.addEventListener("scroll", requestUpdate);
-//update();
-/*
-function update() {
-  var rotation = map(content.scrollTop, 0, maxScroll, 0, 360);
-  console.log(rotation);
-  TweenLite.set(knob, {rotation:rotation})
-  getColour(rotation);
-  requestId = null;
-}
-
-function requestUpdate() {
-  if (!requestId) {
-    requestId = requestAnimationFrame(update);
-  }
-}
-
-
-
-
-function norm(value, min, max) {
-		return (value - min) / (max - min);
-	}
-
-	function lerp(norm, min, max) {
-		return (max - min) * norm + min;
-	}
-
-	function map(value, sourceMin, sourceMax, destMin, destMax) {
-		return lerp(norm(value, sourceMin, sourceMax), destMin, destMax);
-	}
-*/
-
