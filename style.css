@@ -1,19 +1,24 @@
 body{
   background-color: #26292f;
 }
-#knobBG, #knob {
+
+#dialcasing {
+  width: 600px;
+  height: 600px;
+  background-color: blue;
+}
+#knob {
   position:absolute;
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/knob_Base.png');
-  width:355px; 
-  height:355px;
+  background-image: url('selector.png');
+  width:478px; 
+  height:478px;
+  bottom:-50px;
+  right:-70px;
 }
 #description {
   font-size:20px;
 }
-#knob {
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/knob_Spinner.png');
-  z-index: 1;
-}
+
 .box {
   font-size:30px;
   padding: 10px;
